@@ -1,0 +1,37 @@
+ExtendedStatus On
+<Directory />
+        Options FollowSymLinks
+        AllowOverride None
+</Directory>
+
+<Directory /var/source/>
+        Options FollowSymLinks MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+</Directory>
+
+<Location /server-status>
+        SetHandler server-status
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+</Location>
+
+<Location /server-info>
+        SetHandler server-info
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1/32
+</Location>
+
+<VirtualHost *:80>
+        ServerName <%= node[:apache][:domain] %>
+        DocumentRoot <%= node[:apache][:docroot] %>
+        <Directory <%= node[:apache][:docroot] %>>
+                AllowOverride All
+        </Directory>
+        ErrorLog /var/log/apache2/error.log
+        LogLevel warn
+        CustomLog /var/log/apache2/access.log combined
+</VirtualHost>

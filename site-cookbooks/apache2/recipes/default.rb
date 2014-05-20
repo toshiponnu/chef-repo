@@ -23,6 +23,13 @@ template "/etc/apache2/apache2.conf" do
     mode "0644"
 end
 
+template "/etc/apache2/conf-available/security.conf" do
+    source "security.conf.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+end
+
 template "/etc/apache2/sites-available/app.conf" do
     source "app.conf.erb"
     owner "root"

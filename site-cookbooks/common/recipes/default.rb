@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: discovery
+# Cookbook Name:: common
 # Recipe:: default
 #
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
-# 
+#
 execute 'apt-get update'
 
 %w{lv tree tmux}.each do |pkg|

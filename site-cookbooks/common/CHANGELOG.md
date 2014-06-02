@@ -1,11 +1,11 @@
-discovery CHANGELOG
-===================
+common CHANGELOG
+================
 
-This file is used to list changes made in each version of the discovery cookbook.
+This file is used to list changes made in each version of the common cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of discovery
+- [your_name] - Initial release of common
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

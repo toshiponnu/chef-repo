@@ -1,5 +1,5 @@
-discovery Cookbook
-==================
+common Cookbook
+===============
 TODO: Enter the cookbook description here.
 
 e.g.
@@ -11,14 +11,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - discovery needs toaster to brown your bagel.
+- `toaster` - common needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List your cookbook attributes here.
 
 e.g.
-#### discovery::default
+#### common::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,7 +27,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['discovery']['bacon']</tt></td>
+    <td><tt>['common']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -36,17 +36,17 @@ e.g.
 
 Usage
 -----
-#### discovery::default
+#### common::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `discovery` in your node's `run_list`:
+Just include `common` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[discovery]"
+    "recipe[common]"
   ]
 }
 ```

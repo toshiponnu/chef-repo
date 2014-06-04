@@ -20,4 +20,5 @@ end
 service "mysql" do
     supports :status => true, :restart => true, :reload => true 
     action [ :enable, :start ]
+    not_if "pgrep mysql"
 end

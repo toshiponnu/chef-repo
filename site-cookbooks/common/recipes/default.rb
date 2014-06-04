@@ -25,8 +25,8 @@ execute 'locales' do
 end
 
 directory '/var/source' do 
-    owner 'vagrant'
-    group 'vagrant'
+    owner node['user']['username']
+    group node['user']['username']
     mode '0755'
     action :create
 end

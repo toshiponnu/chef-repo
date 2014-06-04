@@ -85,10 +85,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "~/project/chef-repo/site-cookbooks"
+      chef.cookbooks_path = [ "./cookbooks", "./site-cookbooks" ]
       chef.run_list = [ "common", "apache2", "php5", "mysql", "git" ]
-  #   chef.roles_path = "../my-recipes/roles"
-  #   chef.data_bags_path = "../my-recipes/data_bags"
+      chef.roles_path = "./roles"
+      chef.data_bags_path = "./data_bags"
+      chef.environments_path = "./environments"
+      chef.environment = "development"
   #   chef.add_recipe "mysql"
   #   chef.add_role "web"
   #

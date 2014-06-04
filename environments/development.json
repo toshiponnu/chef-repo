@@ -1,0 +1,13 @@
+{
+    "name": "development",
+    "description": "Development environment by vagrant",
+    "chef_type": "environment",
+    "json_class": "Chef::Environment",
+    "default_attributes": {
+        "user" : {
+            "username": "vagrant",
+            "home": "/home/vagrant"
+        }
+    },
+    "override_attributes": {}
+}

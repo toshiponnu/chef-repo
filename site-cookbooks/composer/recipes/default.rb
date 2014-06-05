@@ -9,7 +9,7 @@
 execute "install composer" do 
     cwd node['user']['home']
     command "curl -sS https://getcomposer.org/installer | php"
-    creates node['user']['home']'/composer.phar'
+    creates "#{node['user']['home']}/composer.phar"
 end
 
 execute "mv composer" do 

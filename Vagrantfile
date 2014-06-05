@@ -86,7 +86,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = [ "./cookbooks", "./site-cookbooks" ]
-      chef.run_list = [ "common", "apache2", "php5", "mysql", "git" ]
+      chef.run_list = [ "common", "apache2", "php5", "composer", "mysql", "git" ]
       chef.roles_path = "./roles"
       chef.data_bags_path = "./data_bags"
       chef.environments_path = "./environments"

@@ -10,7 +10,7 @@ package "php5" do
     action :install
 end
 
-%w{php5-common php-apc php5-curl php5-mcrypt php5-mysql php5-memcached php-pear smarty3}.each do |pkg|
+%w{php5-common php-apc php5-curl php5-mcrypt php5-json php5-mysql php5-memcached php-pear smarty3}.each do |pkg|
     package pkg do
         action :install
     end

@@ -1,0 +1,98 @@
+" ==================== Common ==================== "
+
+set nocompatible
+filetype off
+
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim
+    call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+" originalrepos on github
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'vim-scripts/twilight'
+
+filetype plugin indent on
+filetype indent on
+syntax on
+colorscheme twilight
+
+set lazyredraw
+set tabstop=4 shiftwidth=4 softtabstop=0
+set expandtab
+set autoindent smartindent
+set backspace=indent,eol,start " バックスペースでなんでも消せるように
+set formatoptions+=m           " 整形オプション，マルチバイト系を追加
+set wildmenu                   " コマンド補完を強化
+set wildmode=list:full         " リスト表示，最長マッチ
+
+" 検索関連
+set wrapscan   " 最後まで検索したら先頭へ戻る
+set ignorecase " 大文字小文字無視
+set smartcase  " 大文字ではじめたら大文字小文字無視しない
+set incsearch  " インクリメンタルサーチ
+set hlsearch   " 検索文字をハイライト
+
+" ファイル関連
+set nobackup   " バックアップ取らない
+set autoread   " 他で書き換えられたら自動で読み直す
+set noswapfile " スワップファイル作らない
+set hidden     " 編集中でも他のファイルを開けるようにする
+
+" 表示関連
+set showmatch         " 括弧の対応をハイライト
+set showcmd           " 入力中のコマンドを表示
+set number            " 行番号表示
+set wrap              " 画面幅で折り返す
+set list              " 不可視文字表示
+set listchars=tab:>\  " 不可視文字の表示方法
+set notitle           " タイトル書き換えない
+set scrolloff=5       " 行送り
+
+" ステータスライン関連
+set laststatus=2
+set statusline=%<%F\ %r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v(ASCII=%03.3b,HEX=%02.2B)\ %l/%L(%P)%m
+
+" エンコーディング関連
+set ffs=unix,mac,dos " 改行文字
+set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,utf-8,cp932
+
+" ==================== Plugin neocomplcache ==================== "
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()

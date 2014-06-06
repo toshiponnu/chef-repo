@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://domain.com/path/to/above.box"
+  config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -86,7 +86,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = [ "./cookbooks", "./site-cookbooks" ]
-      chef.run_list = [ "common", "apache2", "php5", "composer", "mysql", "git" ]
+      chef.run_list = [ "common", "git", "zsh", "vim", "apache2", "php5", "composer", "mysql" ]
       chef.roles_path = "./roles"
       chef.data_bags_path = "./data_bags"
       chef.environments_path = "./environments"

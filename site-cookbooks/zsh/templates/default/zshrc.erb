@@ -1,0 +1,43 @@
+# 環境変数の設定
+export LANGUAGE=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+export EDITOR=vim
+
+# プロンプトの設定
+autoload colors
+colors
+PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
+PROMPT2="%{${fg[white]}%}%_> %{${reset_color}%}"
+SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
+RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
+
+# Ctrl R とか Ctrl A とか効くように
+bindkey -e
+
+# 履歴の設定
+HISTFILE=~/.zsh_history      # ヒストリファイルを指定
+HISTSIZE=10000               # ヒストリに保存するコマンド数
+SAVEHIST=10000               # ヒストリファイルに保存するコマンド数
+setopt hist_ignore_all_dups  # 重複するコマンド行は古い方を削除
+setopt hist_ignore_dups      # 直前と同じコマンドラインはヒストリに追加しない
+setopt share_history         # コマンド履歴ファイルを共有する
+setopt append_history        # 履歴を追加 (毎回 .zsh_history を作るのではなく)
+setopt inc_append_history    # 履歴をインクリメンタルに追加
+setopt hist_no_store         # historyコマンドは履歴に登録しない
+setopt hist_reduce_blanks    # 余分な空白は詰めて記録
+
+# インクリメンタルサーチの設定
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+# 全履歴の一覧を出力する
+function history-all { history -E 1 }
+
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '~/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

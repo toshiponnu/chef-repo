@@ -8,12 +8,6 @@
 #
 execute 'apt-get update'
 
-%w{lv tree tmux}.each do |pkg|
-    package pkg do
-        action :install 
-    end
-end
-
 execute 'locale-gen' do
   command 'locale-gen ja_JP.UTF-8'
   action :run
@@ -22,6 +16,12 @@ end
 execute 'locales' do
   command 'dpkg-reconfigure locales'
   action :run
+end
+
+%w{lv tree tmux}.each do |pkg|
+    package pkg do
+        action :install 
+    end
 end
 
 directory '/var/source' do 

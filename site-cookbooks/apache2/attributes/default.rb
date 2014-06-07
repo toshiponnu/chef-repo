@@ -1,5 +1,4 @@
 # sites-available attributes
-default[:apache][:domain] = 'discovery-baby.com'
-default[:apache][:docroot] = '/var/source/app/frontend/commerce/htdocs'
-
+default[:apache][:domain] = '192.168.33.10'
+default[:apache][:docroot] = '/var/source/app/public'
 

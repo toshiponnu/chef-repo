@@ -13,6 +13,7 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'vim-scripts/twilight'
 
 filetype plugin indent on
@@ -96,3 +97,9 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" ==================== Plugin auto-ctags ==================== "
+let g:auto_ctags = 1
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_directory_list = ['.git']
+set tags+=.git/tags

@@ -6,8 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "vim" do
-    action :install 
+%w{vim exuberant-ctags}.each do |pkg|
+    package pkg do
+        action :install
+    end
 end
 
 directory "#{node['user']['home']}/.vim" do 

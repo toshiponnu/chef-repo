@@ -1,4 +1,4 @@
 # ruby attributes
-default[:ruby][:version] = '1.9.3-p545'
-default[:rails][:version] = '4.0.2'
+default[:version][:ruby] = '2.1.2'
+default[:version][:rails] = '4.1.1'
 

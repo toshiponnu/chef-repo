@@ -6,12 +6,15 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "add-apt-repository" do
-    action :install
+%w{software-properties-common apt-file}.each do |pkg|
+    package pkg do
+        action :install 
+    end
 end
 
 execute "search java8" do
     command <<-EOF
+            apt-file update
             add-apt-repository ppa:webupd8team/java
             apt-get update
             echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 boolean true" | debconf-set-selections

@@ -1,4 +1,4 @@
-
+#
 # Cookbook Name:: dynamodb
 # Recipe:: default
 #
@@ -6,6 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+package "add-apt-repository" do
+    action :install
+end
 
 execute "search java8" do
     command <<-EOF

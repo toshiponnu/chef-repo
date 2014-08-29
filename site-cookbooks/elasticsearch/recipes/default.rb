@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'java'
+
 execute "install elasticsearch" do
     cwd "#{node['user']['home']}"
     command <<-EOF
@@ -25,10 +27,16 @@ template "/etc/elasticsearch/elasticsearch.yml" do
     mode "0644"
 end
 
-execute "install elasticsearch" do
+execute "install kuromoji plugin" do
     command "sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-kuromoji/2.2.0"
     action :run
     not_if { File.exists?("/usr/share/elasticsearch/plugins/analysis-kuromoji/elasticsearch-analysis-kuromoji-2.2.0.jar") }
+end
+
+execute "install elasticsearch-HQ plugin" do
+    command "sudo /usr/share/elasticsearch/bin/plugin -install royrusso/elasticsearch-HQ"
+    action :run
+    not_if { File.exists?("/usr/share/elasticsearch/plugins/HQ/_site/index.html") }
 end
 
 service "elasticsearch" do

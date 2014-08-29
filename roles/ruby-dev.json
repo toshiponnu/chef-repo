@@ -1,0 +1,25 @@
+{
+    "name": "ruby-dev",
+    "description": "ruby-dev role by vagrant",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+        "ruby": {
+            "ruby_version": "2.1.2",
+            "rails_version": "4.1.5"
+        }
+    },
+    "override_attributes": {},
+    "run_list": [
+        "recipe[common]",
+        "recipe[git]",
+        "recipe[zsh]",
+        "recipe[ruby]",
+        "recipe[imagemagick]",
+        "recipe[mysql]",
+        "recipe[memcached]",
+        "recipe[dynamodb]",
+        "recipe[elasticsearch]",
+        "recipe[vim]"
+    ]
+}

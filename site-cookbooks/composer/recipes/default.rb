@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'php5'
+
 execute "install composer" do 
     cwd node['user']['home']
     command "curl -sS https://getcomposer.org/installer | php"

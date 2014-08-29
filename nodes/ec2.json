@@ -1,1 +1,0 @@
-{    "environment": "production",    "run_list": [        "common",        "git",        "zsh",        "vim",        "apache2",        "php5",        "composer",        "mysql"    ]}

@@ -1,0 +1,13 @@
+{
+    "name": "qa",
+    "description": "QA environment by ec2",
+    "chef_type": "environment",
+    "json_class": "Chef::Environment",
+    "default_attributes": {
+        "user" : {
+            "username": "ubuntu",
+            "home": "/home/ubuntu"
+        }
+    },
+    "override_attributes": {}
+}

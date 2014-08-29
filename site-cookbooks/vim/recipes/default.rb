@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'git'
+
 %w{vim exuberant-ctags}.each do |pkg|
     package pkg do
         action :install

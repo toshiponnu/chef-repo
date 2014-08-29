@@ -21,6 +21,7 @@ template "/etc/apache2/apache2.conf" do
     owner "root"
     group "root"
     mode "0644"
+    notifies :reload, "service[apache2]"
 end
 
 template "/etc/apache2/conf-available/security.conf" do
@@ -28,6 +29,7 @@ template "/etc/apache2/conf-available/security.conf" do
     owner "root"
     group "root"
     mode "0644"
+    notifies :reload, "service[apache2]"
 end
 
 template "/etc/apache2/sites-available/app.conf" do
@@ -35,14 +37,14 @@ template "/etc/apache2/sites-available/app.conf" do
     owner "root"
     group "root"
     mode "0644"
+    notifies :reload, "service[apache2]"
 end
 
-execute "ln sites-enabled" do
-    command "ln -s /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf"
-    not_if { File.exists?("/etc/apache2/sites-enabled/app.conf") }
+link "/etc/apache2/sites-enabled/app.conf" do
+    to "/etc/apache2/sites-available/app.conf"
 end
 
 service "apache2" do 
     supports :status => true, :restart => true, :reload => true 
-    action [ :enable, :restart ]
+    action [ :enable, :start ]
 end

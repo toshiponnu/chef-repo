@@ -6,26 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-%w{software-properties-common apt-file}.each do |pkg|
-    package pkg do
-        action :install 
-    end
-end
-
-execute "search java8" do
-    command <<-EOF
-            apt-file update
-            add-apt-repository ppa:webupd8team/java
-            apt-get update
-            echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 boolean true" | debconf-set-selections
-        EOF
-    action :run
-    not_if "apt-cache search oracle-java8-installer | grep oracle-java8-installer"
-end
-
-package "oracle-java8-installer" do
-    action :install
-end
+include_recipe 'java'
 
 directory "#{node['user']['home']}/dynamodb" do 
     owner node['user']['username']
@@ -43,13 +24,14 @@ execute "install dynamodb" do
     action :run
     user node['user']['username']
     group node['user']['username']
-    not_if { File.exists?("dynamodb_local_latest.tar.gz") }
+    not_if { File.exists?("#{node['user']['home']}/dynamodb/DynamoDBLocal.jar") }
 end
 
 execute "start dynamodb" do
     cwd "#{node['user']['home']}/dynamodb"
     command "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar &"
     action :run
-    not_if "pgrep dynamodb"
+    user node['user']['username']
+    group node['user']['username']
+    not_if "pgrep -f DynamoDBLocal.jar"
 end
-

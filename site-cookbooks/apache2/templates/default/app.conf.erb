@@ -26,9 +26,9 @@ ExtendedStatus On
 </Location>
 
 <VirtualHost *:80>
-        ServerName <%= node[:apache][:domain] %>
-        DocumentRoot <%= node[:apache][:docroot] %>
-        <Directory <%= node[:apache][:docroot] %>>
+        ServerName <%= node[:apache2][:server_name] %>
+        DocumentRoot <%= node[:apache2][:document_root] %>
+        <Directory <%= node[:apache2][:document_root] %>>
                 AllowOverride All
         </Directory>
         ErrorLog /var/log/apache2/error.log

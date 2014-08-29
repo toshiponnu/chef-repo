@@ -1,1 +1,0 @@
-{    "environment": "development",    "run_list": [        "common",        "git",        "zsh",        "vim",        "apache2",        "php5",        "composer",        "ruby",        "mysql",        "dynamodb",        "memcached",        "elasticsearch"    ]}

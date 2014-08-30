@@ -10,7 +10,7 @@
         },
         "apache2": {
             "server_name": "192.168.33.10",
-            "document_root": "/var/source/app/public"
+            "document_root": "/var/source/cakephp/app/webroot"
         }
     },
     "override_attributes": {},

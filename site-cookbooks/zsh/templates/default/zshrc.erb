@@ -41,3 +41,10 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+alias grephtml="find ./ -name '*.html*' | xargs grep -n"
+alias grepcss="find ./ -name '*.css*' | xargs grep -n"
+alias grepjs="find ./ -name '*.js*' | xargs grep -n"
+alias greprb="find ./ -name '*.rb' | xargs grep -n"
+alias grepphp="find ./ -name '*.php' | xargs grep -n"
+

@@ -90,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.data_bags_path = "./data_bags"
       chef.environments_path = "./environments"
       chef.environment = "development"
-      chef.add_role "php-dev"
+      chef.add_role "ruby-dev"
   #
   #   # You may also specify custom JSON attributes:
   #   chef.json = { :mysql_password => "foo" }

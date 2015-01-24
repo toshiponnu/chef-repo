@@ -5,7 +5,9 @@ filetype off
 
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle/'))
+    call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    call neobundle#end()
 endif
 
 " originalrepos on github
@@ -22,7 +24,7 @@ syntax on
 colorscheme twilight
 
 set lazyredraw
-set tabstop=4 shiftwidth=4 softtabstop=0
+set tabstop=2 shiftwidth=2 softtabstop=0
 set expandtab
 set autoindent smartindent
 set backspace=indent,eol,start " バックスペースでなんでも消せるように
@@ -103,3 +105,4 @@ let g:auto_ctags = 1
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_directory_list = ['.git']
 set tags+=.git/tags
+

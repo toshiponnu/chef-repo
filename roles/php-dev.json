@@ -25,7 +25,6 @@
         "recipe[mysql]",
         "recipe[memcached]",
         "recipe[dynamodb]",
-        "recipe[elasticsearch]",
         "recipe[vim]"
     ]
 }

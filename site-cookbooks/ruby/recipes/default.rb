@@ -51,6 +51,13 @@ git "#{node['user']['home']}/.rbenv/plugins/ruby-build" do
     group node['user']['username']
 end
 
+template "#{node['user']['home']}/.gemrc" do
+    source "gemrc.erb"
+    owner node['user']['username']
+    group node['user']['username']
+    mode "0644"
+end
+
 execute "install ruby" do
     environment "HOME" => node['user']['home']
     command <<-EOF
@@ -64,24 +71,28 @@ execute "install ruby" do
     not_if { File.exists?("#{node['user']['home']}/.rbenv/versions/#{node['ruby']['ruby_version']}") }
 end
 
-template "#{node['user']['home']}/.gemrc" do 
-    source "gemrc.erb" 
-    owner node['user']['username']
+execute "install bundler" do
+    environment "HOME" => node['user']['home']
+    command <<-EOF
+            #{node['user']['home']}/.rbenv/shims/gem update
+            #{node['user']['home']}/.rbenv/shims/gem install bundler
+            #{node['user']['home']}/.rbenv/bin/rbenv rehash
+        EOF
+    action :run
+    user node['user']['username']
     group node['user']['username']
-    mode "0644"
+    not_if { File.exists?("#{node['user']['home']}/.rbenv/versions/#{node['ruby']['ruby_version']}/bin/bundler") }
 end
 
 execute "install rails" do
     environment "HOME" => node['user']['home']
     command <<-EOF
-            #{node['user']['home']}/.rbenv/shims/gem update
-            #{node['user']['home']}/.rbenv/shims/gem install bundler
             #{node['user']['home']}/.rbenv/shims/gem install rails --version="= #{node['ruby']['rails_version']}"
             #{node['user']['home']}/.rbenv/bin/rbenv rehash
         EOF
     action :run
     user node['user']['username']
     group node['user']['username']
-    not_if { File.exists?("#{node['user']['home']}/.rbenv/shims/rails") }
+    not_if { File.exists?("#{node['user']['home']}/.rbenv/versions/#{node['ruby']['ruby_version']}/bin/rails") }
 end
 

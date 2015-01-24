@@ -9,19 +9,30 @@
 execute 'apt-get update'
 
 execute 'locale-gen' do
-  command 'locale-gen ja_JP.UTF-8'
-  action :run
+    command <<-EOF
+            locale-gen ja_JP.UTF-8
+            dpkg-reconfigure locales
+        EOF
+    action :run
+    not_if "echo $LANG | grep 'ja_JP.UTF-8'"
 end
 
-execute 'locales' do
-  command 'dpkg-reconfigure locales'
-  action :run
-end
-
-%w{lv tree tmux}.each do |pkg|
+%w{lv tree tmux ntp}.each do |pkg|
     package pkg do
         action :install 
     end
+end
+
+template "/etc/ntp.conf" do
+    source "ntp.conf.erb"
+    owner "root"
+    group "root"
+    mode 0644
+end
+
+service "ntp" do
+    supports status: true, restart: true, reload: true
+    action [ :enable, :start ]
 end
 
 directory '/var/source' do 
